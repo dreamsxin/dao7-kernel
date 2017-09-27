@@ -102,3 +102,24 @@ sed -f $extname/sedscript < kernel/backtrace.h > $extname/ext/kernel/backtrace.h
 sed -f $extname/sedscript < kernel/backtrace.c > $extname/ext/kernel/backtrace.c
 sed -f $extname/sedscript < kernel/exception.h > $extname/ext/kernel/exception.h
 sed -f $extname/sedscript < kernel/exception.c > $extname/ext/kernel/exception.c
+
+echo " [done]."
+
+cat <<eof
+
+To use your new extension, you will have to execute the following steps:
+
+1.  $ cd $extname/ext
+2.  $ phpize
+3.  $ vi config.m4
+4.  $ ./configure
+5.  $ make
+6.  $ vi ext/$extname/$extname.c
+7.  $ make
+
+Repeat steps 3-5 until you are satisfied with $extname/ext/config.m4 and
+step 5 confirms that your module is compiled into PHP. Then, start writing
+code and repeat the last two steps as often as necessary.
+$warning
+
+eof
